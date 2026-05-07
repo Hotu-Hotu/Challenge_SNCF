@@ -286,8 +286,10 @@ X_meta_fit   = np.column_stack(list(valid_preds.values())).astype("float32")
 X_meta_train = np.column_stack(list(test_preds.values())).astype("float32")
 
 meta_model = tf.keras.Sequential([
-    tf.keras.layers.Dense(16, activation="relu", input_shape=(X_meta_fit.shape[1],)),
-    tf.keras.layers.Dense(8,  activation="relu"),
+    tf.keras.layers.Dense(256, activation="relu", input_shape=(X_meta_fit.shape[1],)),
+    tf.keras.layers.Dense(128,  activation="relu"),
+    tf.keras.layers.Dense(128,  activation="relu"),
+    tf.keras.layers.Dense(64,  activation="relu"),
     tf.keras.layers.Dense(1),
 ])
 meta_model.compile(optimizer=tf.keras.optimizers.Adam(0.001), loss="mae")
